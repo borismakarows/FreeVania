@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class cameraMovement : MonoBehaviour
 {
+    // i doesn't work for now
     PlayerMovement playerMovement;
     [SerializeField] GameObject player;
     [SerializeField] CinemachineVirtualCamera[] virtualCameras = new CinemachineVirtualCamera[3];
