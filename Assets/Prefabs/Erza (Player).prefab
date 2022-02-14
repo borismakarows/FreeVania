@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8150982578749404689}
   - component: {fileID: 6273275350042246365}
   - component: {fileID: 1303129093}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Erza (Player)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 2246244843145526114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.35, y: -1.28, z: 0}
-  m_LocalScale: {x: 1.004, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,7 +97,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 107078129
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -202,11 +202,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 2246244843145526114}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 48877972dd108890a944ec676c0de5a9, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.24761328, y: -0.19455957}
+  m_Offset: {x: -0.25017998, y: -0.105946094}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -217,5 +217,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.51554173, y: 0.536232}
+  m_Size: {x: 0.5070235, y: 0.64983314}
   m_EdgeRadius: 0

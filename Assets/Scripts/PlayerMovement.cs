@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D erzaBoxCollider2D;
     Vector2 startMoveInput;
     bool onAir;  
+    bool isAlive = true;
+    PlayerInput erzaPlayerInput;
+    [SerializeField] CinemachineVirtualCamera deathCam;
+    CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
+    SpriteRenderer erzaSpriteRenderer;
 
     [Header("Attributes")]
     [SerializeField] float runSpeed = 2f;
@@ -21,33 +27,41 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float climbSpeed = 1f;
 
     [SerializeField] float jumpCount = 2f;
-
+    [SerializeField] float maxZoom = 1.4f;
+    [SerializeField] float max_intensity = 5f;
+    [SerializeField] float shakeTimer = 2f;
 
     float gravityScaleatStart;
+
+    [SerializeField] Color32 deathColor;
+
+    
     
     void Start()
     {
+        erzaSpriteRenderer = GetComponent<SpriteRenderer>();
         erzaRigidBody = GetComponent<Rigidbody2D>();
         erzaAnimator = GetComponent<Animator>();
         erzaCapsuleCollider2D = GetComponent<CapsuleCollider2D>();
         erzaBoxCollider2D = GetComponent<BoxCollider2D>();
         gravityScaleatStart = erzaRigidBody.gravityScale;
         Vector2 startMoveInput = moveInput;
+        erzaPlayerInput = GetComponent<PlayerInput>();
+        cinemachineBasicMultiChannelPerlin = deathCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     void Update()
     {
         Run();
+        Die();
         FlipSprite();
         ClimbLadder();    
         dontClimbWall();
         erzaAnimator.SetBool("IsJumping", onAir);
     }
 
-    
     void OnCollisionEnter2D(Collision2D other) 
     {
-        
         if(other.gameObject.tag == "Ground")
         {
             onAir = false;
@@ -173,8 +187,52 @@ public class PlayerMovement : MonoBehaviour
         return moveInput;
     }
 
-    
-    
+
+    void Die()
+    {
+        if (erzaRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+        {
+            isAlive = false;
+        }
+         if (isAlive == false )
+        {
+            erzaPlayerInput.actions.Disable();
+            erzaAnimator.SetBool("IsDead", !isAlive); 
+            shakeCameraAndZoom();
+        }
+        
+    }
 
 
+    void shakeCameraAndZoom()
+    {
+        erzaSpriteRenderer.color = deathColor;
+        
+        if (shakeTimer >= 0)
+        {
+            shakeTimer -= Time.deltaTime;
+        }
+
+        if(shakeTimer>0f)
+        {   
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain =  max_intensity;
+            if (deathCam.m_Lens.OrthographicSize > maxZoom)
+            {
+                deathCam.m_Lens.OrthographicSize -= 1f;
+            }
+
+        }
+        else
+        {                
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+        }
+        
+    }
+
+    public bool getIsAlive()
+    {
+        return isAlive;
+    }
+
+    
 }
