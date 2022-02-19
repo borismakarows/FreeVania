@@ -26,7 +26,6 @@ public class EnemyMovement : MonoBehaviour
     {
         if (playerMovement.getIsAlive() == true)
         {   
-            Debug.Log(playerMovement.getIsAlive());
             enemyRigidBody.velocity = new Vector2(enemySpeed, enemyRigidBody.velocity.y);
             dontFall();
             startCounter();

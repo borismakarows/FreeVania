@@ -17,8 +17,8 @@ TagManager:
   - ClimbingLayer
   - Enemies
   - PlatformLayer
-  - 
-  - 
+  - Hazard
+  - Throw
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Enemies
     uniqueID: 1592590425
+    locked: 0
+  - name: Hazard
+    uniqueID: 634571421
     locked: 0
   - name: Character
     uniqueID: 107078129

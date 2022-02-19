@@ -20,21 +20,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera deathCam;
     CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
     SpriteRenderer erzaSpriteRenderer;
+    [SerializeField] Transform axePosition;
+    [SerializeField] GameObject axeThrow;
 
     [Header("Attributes")]
     [SerializeField] float runSpeed = 2f;
     [SerializeField] float jumpSpeed = 4f;
     [SerializeField] float climbSpeed = 1f;
 
-    [SerializeField] float jumpCount = 2f;
     [SerializeField] float maxZoom = 1.4f;
     [SerializeField] float max_intensity = 5f;
     [SerializeField] float shakeTimer = 2f;
-
-    float gravityScaleatStart;
-
     [SerializeField] Color32 deathColor;
-
+    float gravityScaleatStart;
+    [SerializeField] Vector3 throwSpeed = new Vector3(1f,0f,0f);
     
     
     void Start()
@@ -65,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.tag == "Ground")
         {
             onAir = false;
-            jumpCount = 2f;
         }    
     }
 
@@ -111,10 +109,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (value.isPressed && jumpCount > 0)
+        if (value.isPressed && onAir == false)
         {
             erzaRigidBody.velocity += new Vector2(0f , jumpSpeed);
-            jumpCount -= 1f;
         }
         
         
@@ -173,11 +170,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (erzaBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("PlatformLayer")))
         {
-            jumpCount = 0f;
-        }
-        else if (onAir == false)
-        {
-            jumpCount = 2f;
+            return;
         }
         
     }
@@ -190,14 +183,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Die()
     {
-        if (erzaRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies")))
+        if (erzaRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazard")))
         {
             isAlive = false;
         }
          if (isAlive == false )
         {
             erzaPlayerInput.actions.Disable();
-            erzaAnimator.SetBool("IsDead", !isAlive); 
+            erzaAnimator.SetBool("IsDead", !isAlive);
             shakeCameraAndZoom();
         }
         
@@ -233,6 +226,16 @@ public class PlayerMovement : MonoBehaviour
     {
         return isAlive;
     }
-
     
+    void OnThrow()
+    {
+        if(!isAlive) {return;}
+        else
+        {
+            Instantiate(axeThrow,axePosition.position,transform.rotation);
+        }
+        
+    
+    
+    }
 }
