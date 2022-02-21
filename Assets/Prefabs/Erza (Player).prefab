@@ -191,6 +191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathCam: {fileID: 0}
+  axePosition: {fileID: 3176759555650329823}
+  axeThrow: {fileID: 5416501447915136907, guid: 0c8100b46023f816b9a1eb92d58e9151, type: 3}
   runSpeed: 3.75
   jumpSpeed: 5.5
   climbSpeed: 2
@@ -200,6 +202,7 @@ MonoBehaviour:
   deathColor:
     serializedVersion: 2
     rgba: 4284111615
+  throwSpeed: {x: 1, y: 0, z: 0}
 --- !u!61 &1303129093
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -250,14 +253,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2464688413599337334}
-  m_LocalRotation: {x: -0, y: -0, z: 0.23995906, w: 0.970783}
-  m_LocalPosition: {x: 0.12, y: 0.07799995, z: 0}
-  m_LocalScale: {x: -0.6818, y: 0.6818, z: 0.6818}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9817925, w: -0.18995667}
+  m_LocalPosition: {x: -0.631, y: -0.177, z: 0}
+  m_LocalScale: {x: -0.5, y: 0.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2246244843145526113}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.768}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 201.9}
 --- !u!212 &1387459999828562209
 SpriteRenderer:
   m_ObjectHideFlags: 0

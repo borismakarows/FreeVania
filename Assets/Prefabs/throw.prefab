@@ -10,9 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5416501447915136909}
   - component: {fileID: 5416501447915136908}
+  - component: {fileID: 4729471964440983817}
+  - component: {fileID: 4159540611773042752}
+  - component: {fileID: 2470086626300008130}
   m_Layer: 10
   m_Name: throw
-  m_TagString: Untagged
+  m_TagString: Axe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5416501447915136907}
   m_LocalRotation: {x: -0, y: -0, z: 0.9629679, w: -0.2696163}
   m_LocalPosition: {x: 1.883, y: -1.446, z: 0}
-  m_LocalScale: {x: -0.6818002, y: 0.6818002, z: 0.6818}
+  m_LocalScale: {x: -0.5, y: 0.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,3 +87,115 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &4729471964440983817
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5416501447915136907}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &4159540611773042752
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5416501447915136907}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.2887705, y: -0.24048492}
+      - {x: 0.17924681, y: -0.13155715}
+      - {x: 0.063059986, y: 0.00037327805}
+      - {x: -0.0054491274, y: 0.10285979}
+      - {x: 0.036411285, y: 0.14710127}
+      - {x: 0.07959467, y: 0.17732342}
+      - {x: 0.09375, y: 0.2265625}
+      - {x: 0.08759322, y: 0.23191208}
+      - {x: 0.082766615, y: 0.22941598}
+      - {x: 0.0708392, y: 0.23178013}
+      - {x: 0.034998, y: 0.2257545}
+      - {x: 0.02451937, y: 0.21943168}
+      - {x: -0.048661906, y: 0.15682605}
+      - {x: -0.1088907, y: 0.22465195}
+      - {x: -0.13434198, y: 0.21915235}
+      - {x: -0.19047102, y: 0.26608053}
+      - {x: -0.16616455, y: 0.28055456}
+      - {x: -0.20516291, y: 0.31471407}
+      - {x: -0.26565683, y: 0.35656896}
+      - {x: -0.40625, y: 0.453125}
+      - {x: -0.39575544, y: 0.42521888}
+      - {x: -0.25847358, y: 0.22494823}
+      - {x: -0.13350277, y: 0.09843321}
+      - {x: -0.17576525, y: 0.0621221}
+      - {x: -0.24974185, y: 0.070225}
+      - {x: -0.37866604, y: 0.16147722}
+      - {x: -0.41308272, y: 0.19116093}
+      - {x: -0.421875, y: 0.1953125}
+      - {x: -0.42838997, y: 0.19303545}
+      - {x: -0.42521846, y: 0.026205603}
+      - {x: -0.37191504, y: -0.096516795}
+      - {x: -0.26294374, y: -0.20776582}
+      - {x: -0.15552968, y: -0.2544088}
+      - {x: -0.068857916, y: -0.2591426}
+      - {x: 0.052495297, y: -0.24374416}
+      - {x: 0.019458245, y: -0.19629319}
+      - {x: -0.009794892, y: -0.15909654}
+      - {x: -0.09143806, y: -0.057304624}
+      - {x: -0.085502215, y: -0.016120277}
+      - {x: -0.04557807, y: 0.020987934}
+      - {x: 0.13419273, y: -0.18559}
+      - {x: 0.15844135, y: -0.2251783}
+      - {x: 0.25854146, y: -0.32920825}
+      - {x: 0.3716564, y: -0.45035696}
+      - {x: 0.4065679, y: -0.45125058}
+      - {x: 0.4278995, y: -0.42147136}
+      - {x: 0.42383465, y: -0.39111555}
+      - {x: 0.3356209, y: -0.29849088}
+--- !u!114 &2470086626300008130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5416501447915136907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae042c8433e4102bbe0255aa3f8b17c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axeVel: {x: 10, y: 2.5}
+  erza: {fileID: 2246244843145526114, guid: 76e05662448889b7da913678031e3689, type: 3}
+  rotationSpeed: 8
+  gravityMultiply: 35
+  destroyDelay: 0.65
+  axeDestroyDelay: 1

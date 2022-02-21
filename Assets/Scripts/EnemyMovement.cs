@@ -14,12 +14,14 @@ public class EnemyMovement : MonoBehaviour
     float delaytoDontFall = 2f;
     bool startTimer;
     float startTime;
-    float walkaWhileTimer = 1f;
+    float walkaWhileTimer = 2f;
+    public Animator enemyAnimator;
 
     void Start() 
     {
         enemyRigidBody = GetComponent<Rigidbody2D>();
         startTime = delaytoDontFall;
+        enemyAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -86,8 +88,7 @@ public class EnemyMovement : MonoBehaviour
                 turn = true;
             }
         }
-
     }
-    
+
 
 }
