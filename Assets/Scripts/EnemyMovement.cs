@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     float startTime;
     float walkaWhileTimer = 2f;
     public Animator enemyAnimator;
+    
 
     void Start() 
     {
@@ -65,6 +66,15 @@ public class EnemyMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.tag == "Attack")
+        {
+            enemyAnimator.SetBool("Dead", true);
+            enemyRigidBody.velocity = new Vector2(0f,0f);
+            enemyRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            Destroy(gameObject, 0.5f);
+            Destroy(other.gameObject, playerMovement.attackZoneDuration);
+        }
+        
         if (enemyRigidBody.IsTouchingLayers(LayerMask.GetMask("PlatformLayer")))
         {
             enemySpeed = -enemySpeed;

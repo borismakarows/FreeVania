@@ -8,6 +8,7 @@ TagManager:
   - Climbing
   - Enemy
   - Axe
+  - Attack
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - PlatformLayer
   - Hazard
   - Throw
-  - 
-  - 
+  - AttackZone
+  - dontclimb
   - 
   - 
   - 

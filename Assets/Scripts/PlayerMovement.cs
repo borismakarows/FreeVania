@@ -22,7 +22,11 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer erzaSpriteRenderer;
     [SerializeField] Transform axePosition;
     [SerializeField] GameObject axeThrow;
-
+    [SerializeField] Transform attackZone;
+    [SerializeField] GameObject createAttackZone;
+    GameObject clone;
+    [SerializeField] Rigidbody2D dontClimbWallsrbd2D;
+ 
     [Header("Attributes")]
     [SerializeField] float runSpeed = 2f;
     [SerializeField] float jumpSpeed = 4f;
@@ -34,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Color32 deathColor;
     float gravityScaleatStart;
     [SerializeField] Vector3 throwSpeed = new Vector3(1f,0f,0f);
-    
+    public float attackZoneDuration = 0.85f;
+    bool canJump = true;
     
     void Start()
     {
@@ -65,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         {
             onAir = false;
         }    
+        
     }
 
     void OnCollisionExit2D(Collision2D other) 
@@ -109,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        if (value.isPressed && onAir == false)
+        if (value.isPressed && onAir == false && canJump == true)
         {
             erzaRigidBody.velocity += new Vector2(0f , jumpSpeed);
         }
@@ -125,6 +131,8 @@ public class PlayerMovement : MonoBehaviour
             erzaAnimator.SetBool("IsRunning", false);
             erzaAnimator.SetTrigger("IsAttacking");
             moveInput = new Vector2(0,0);
+            clone = Instantiate(createAttackZone,attackZone.position,transform.rotation);
+            Destroy(clone, 0.7f);
         }
         moveInput = startMoveInput;
     }
@@ -167,12 +175,14 @@ public class PlayerMovement : MonoBehaviour
 
     void dontClimbWall()
     {
-
-        if (erzaBoxCollider2D.IsTouchingLayers(LayerMask.GetMask("PlatformLayer")))
+        if (dontClimbWallsrbd2D.IsTouchingLayers(LayerMask.GetMask("PlatformLayer")))
         {
-            return;
+            canJump = false;
         }
-        
+        else
+        {
+            canJump = true;
+        }
     }
 
     public Vector2 getMoveInput()
@@ -234,8 +244,5 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(axeThrow,axePosition.position,transform.rotation);
         }
-        
-    
-    
     }
 }
