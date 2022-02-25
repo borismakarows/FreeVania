@@ -245,4 +245,11 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(axeThrow,axePosition.position,transform.rotation);
         }
     }
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.gameObject.tag == "exit")
+        {
+            return;
+        }    
+    }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Axe
   - Attack
+  - Exit
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Throw
   - AttackZone
   - dontclimb
-  - 
+  - exit
   - 
   - 
   - 
