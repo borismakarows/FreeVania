@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     Rigidbody2D enemyRigidBody;
     [SerializeField] float enemySpeed = 0.5f;
     [SerializeField] Rigidbody2D childsRigidBody;   
+    public Color32 deathColor;
+    SpriteRenderer enemySprite;
     bool turn = true; 
     float delaytoDontFall = 2f;
     bool startTimer;
@@ -23,10 +25,15 @@ public class EnemyMovement : MonoBehaviour
         enemyRigidBody = GetComponent<Rigidbody2D>();
         startTime = delaytoDontFall;
         enemyAnimator = GetComponent<Animator>();
+        enemySprite = GetComponent<SpriteRenderer>();
+        if (transform.localScale.x == -1)
+        {
+            enemySpeed = -enemySpeed;
+        }
     }
 
     void Update()
-    {
+    {      
         if (playerMovement.getIsAlive() == true)
         {   
             enemyRigidBody.velocity = new Vector2(enemySpeed, enemyRigidBody.velocity.y);
@@ -68,6 +75,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Attack")
         {
+            enemySprite.color = deathColor;
             enemyAnimator.SetBool("Dead", true);
             enemyRigidBody.velocity = new Vector2(0f,0f);
             enemyRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -80,8 +88,6 @@ public class EnemyMovement : MonoBehaviour
             enemySpeed = -enemySpeed;
             flipFace();    
         }
-        
-        
     }
 
     void startCounter()

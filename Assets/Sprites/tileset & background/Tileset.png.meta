@@ -1417,7 +1417,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 5, y: -2}
+        - {x: 2, y: -5}
+        - {x: -2, y: -5}
+        - {x: -5, y: -3}
+        - {x: -5, y: 3}
+        - {x: -2, y: 5}
+        - {x: 3, y: 5}
+        - {x: 5, y: 3}
       tessellationDetail: 0
       bones: []
       spriteID: a707836127bd09e20800000000000000
@@ -4187,7 +4195,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tileset_89: -4876971014850050250
+      Tileset_116: 818803173012836596
       Tileset_47: -1788890817464930820
       Tileset_27: -7245433517681746672
       Tileset_81: 1709865468434769203
@@ -4352,8 +4360,8 @@ TextureImporter:
       Tileset_118: 5717776428800766030
       Tileset_162: -1916972701718868728
       Tileset_124: -89533908723591481
-      Tileset_116: 818803173012836596
       Tileset_85: -6350938586624211770
+      Tileset_89: -4876971014850050250
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

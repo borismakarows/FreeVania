@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 107078129
-  m_SortingLayer: 7
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4341057ae55a6a34b8a16ea7f3dc5aa7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -193,9 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae042c8433e4102bbe0255aa3f8b17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axeVel: {x: 10, y: 2.5}
+  axeVel: {x: 12, y: 0.3}
   erza: {fileID: 2246244843145526114, guid: 76e05662448889b7da913678031e3689, type: 3}
-  rotationSpeed: 8
-  gravityMultiply: 35
-  destroyDelay: 0.65
+  rotationSpeed: 8.8
+  gravityMultiply: 5
+  destroyDelay: 0.4
   axeDestroyDelay: 1

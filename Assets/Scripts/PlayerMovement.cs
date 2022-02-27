@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D erzaBoxCollider2D;
     Vector2 startMoveInput;
     bool onAir;  
-    bool isAlive = true;
+    public bool isAlive = true;
     PlayerInput erzaPlayerInput;
     [SerializeField] CinemachineVirtualCamera deathCam;
     CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
@@ -38,7 +38,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Color32 deathColor;
     float gravityScaleatStart;
     [SerializeField] Vector3 throwSpeed = new Vector3(1f,0f,0f);
-    public float attackZoneDuration = 0.85f;
+    public float attackZoneDuration = 1f;
+    [SerializeField] float distanceBetweenCreation = 0.48f;
+    [SerializeField] float attackZoneCreateDelay = 0.45f;
     bool canJump = true;
     
     void Start()
@@ -131,8 +133,7 @@ public class PlayerMovement : MonoBehaviour
             erzaAnimator.SetBool("IsRunning", false);
             erzaAnimator.SetTrigger("IsAttacking");
             moveInput = new Vector2(0,0);
-            clone = Instantiate(createAttackZone,attackZone.position,transform.rotation);
-            Destroy(clone, 0.7f);
+            StartCoroutine(MakeAttack());
         }
         moveInput = startMoveInput;
     }
@@ -144,22 +145,19 @@ public class PlayerMovement : MonoBehaviour
         {return;}
         else
         {   
-            
             if (!erzaCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("ClimbingLayer"))) 
             {   
-            erzaAnimator.SetBool("IsClimbing", false);
-            erzaRigidBody.gravityScale = gravityScaleatStart;
+                erzaAnimator.SetBool("IsClimbing", false);
+                erzaRigidBody.gravityScale = gravityScaleatStart;
             }
-            
-            else if(erzaCapsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("ClimbingLayer")))
+            else 
             {
-            onAir = false;
-            Vector2 climbVelocity = new Vector2(erzaRigidBody.velocity.x,moveInput.y * climbSpeed);
-            erzaRigidBody.velocity = climbVelocity;
-            erzaAnimator.SetBool("IsClimbing",true);
-            erzaRigidBody.gravityScale = 0f;
-            }
-            
+                onAir = false;
+                erzaRigidBody.gravityScale = 0f;
+                Vector2 climbVelocity = new Vector2(erzaRigidBody.velocity.x, moveInput.y * climbSpeed);
+                erzaRigidBody.velocity = climbVelocity;
+                erzaAnimator.SetBool("IsClimbing",true);
+            }  
         }              
     }
     
@@ -170,6 +168,10 @@ public class PlayerMovement : MonoBehaviour
             erzaAnimator.SetBool("IsClimbing", false);
             erzaRigidBody.gravityScale = gravityScaleatStart;
             erzaAnimator.SetBool("IsJumping", false);
+        }
+        if (other.gameObject.tag == "FallDeath")
+        {
+            FindObjectOfType<GameSession>().ProccessPlayerDeath();
         }
     }
 
@@ -195,15 +197,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (erzaRigidBody.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazard")))
         {
-            isAlive = false;
-        }
-         if (isAlive == false )
-        {
-            erzaPlayerInput.actions.Disable();
-            erzaAnimator.SetBool("IsDead", !isAlive);
-            shakeCameraAndZoom();
-        }
-        
+            FindObjectOfType<GameSession>().ProccessPlayerDeath();
+        }     
     }
 
 
@@ -245,11 +240,32 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(axeThrow,axePosition.position,transform.rotation);
         }
     }
-    void OnTriggerEnter2D(Collider2D other) 
+
+    IEnumerator MakeAttack()
     {
-        if (other.gameObject.tag == "exit")
+        yield return new WaitForSecondsRealtime(attackZoneCreateDelay);
+        if (transform.localScale.x == -1)
         {
-            return;
-        }    
+            Vector3 atStartPosition = attackZone.position;
+            attackZone.position = new Vector3(attackZone.position.x - distanceBetweenCreation, attackZone.position.y,attackZone.position.z);
+            clone = Instantiate(createAttackZone,attackZone.position,transform.rotation);
+            Destroy(clone,attackZoneDuration);
+            attackZone.position = atStartPosition;
+        }
+        else
+        {
+            Vector3 atStartPosition = attackZone.position;
+            attackZone.position = new Vector3(attackZone.position.x + distanceBetweenCreation, attackZone.position.y,attackZone.position.z);
+            clone = Instantiate(createAttackZone,attackZone.position,transform.rotation);
+            Destroy(clone,attackZoneDuration);
+            attackZone.position = atStartPosition;
+        }
     }
+    public void DieAnimation()
+    {
+        erzaPlayerInput.actions.Disable();
+        erzaAnimator.SetBool("IsDead", !isAlive);
+        shakeCameraAndZoom();
+    }
+     
 }

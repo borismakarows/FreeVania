@@ -31,7 +31,6 @@ public class Bullet : MonoBehaviour
         startPosition = transform;
         enemyMovement = FindObjectOfType<EnemyMovement>();
         playerMovement = FindObjectOfType<PlayerMovement>();       
-        enemyAnimator = enemyMovement.enemyAnimator; 
     }
     void Update()
     {
@@ -68,14 +67,19 @@ public class Bullet : MonoBehaviour
     {
         if (other.tag == "Enemy" && canThrow == true)
         {
+            Destroy(other.gameObject,destroyDelay);
+            Destroy(gameObject,destroyDelay);
             canThrow = false;
+            SpriteRenderer enemySprite = other.GetComponent<SpriteRenderer>();
+            Rigidbody2D enemyRb2D = other.GetComponent<Rigidbody2D>();
+            enemyAnimator = other.GetComponent<Animator>();
+            enemySprite.color = enemyMovement.deathColor;
+            enemyAnimator.SetBool("Dead", true);
+            enemyRb2D.velocity = new Vector2(0f,0f);
+            enemyRb2D.constraints = RigidbodyConstraints2D.FreezeAll;
             axeRb2D.velocity = new Vector2(0f,0f);
             axeRb2D.constraints = RigidbodyConstraints2D.FreezeAll;
-            Destroy(other.gameObject,destroyDelay);
-            enemyAnimator.SetBool("Dead", true);
-            Destroy(gameObject,destroyDelay);
         }
     }
-
 
 }

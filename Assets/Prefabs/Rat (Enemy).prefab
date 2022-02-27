@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.077487, y: -1.9511282}
+  m_Offset: {x: 1.6746788, y: -3.5150943}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6377506, y: 1.4062877}
+  m_Size: {x: 0.580925, y: 1.4062872}
   m_EdgeRadius: 0
 --- !u!50 &8004812012739645885
 Rigidbody2D:
@@ -91,10 +91,10 @@ GameObject:
   - component: {fileID: 8004812013568723440}
   - component: {fileID: 8004812013568723441}
   - component: {fileID: 8004812013568723442}
-  - component: {fileID: 8004812013568723443}
   - component: {fileID: 8004812013568723406}
   - component: {fileID: 8004812013568723407}
   - component: {fileID: 8004812013568723405}
+  - component: {fileID: 8600106025538597727}
   m_Layer: 7
   m_Name: Rat (Enemy)
   m_TagString: Enemy
@@ -190,22 +190,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &8004812013568723443
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8004812013568723444}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.03995356, y: -0.35465956}
-  serializedVersion: 2
-  m_Radius: 0.13194275
 --- !u!114 &8004812013568723406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,9 +202,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f23fab6bdcf2231a198794876ec0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 6273275350042246365, guid: 76e05662448889b7da913678031e3689, type: 3}
   enemySpeed: 0.7
   childsRigidBody: {fileID: 8004812012739645885}
+  deathColor:
+    serializedVersion: 2
+    rgba: 4093641471
   enemyAnimator: {fileID: 8004812013568723442}
 --- !u!61 &8004812013568723407
 BoxCollider2D:
@@ -235,18 +222,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.23755074, y: -0.389786}
+  m_Offset: {x: 0.50295067, y: -0.6676743}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.07342148, y: 0.20179129}
+  m_Size: {x: 0.15872574, y: 0.58359957}
   m_EdgeRadius: 0
 --- !u!50 &8004812013568723405
 Rigidbody2D:
@@ -269,3 +256,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &8600106025538597727
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004812013568723444}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.044937048, y: -0.7640088}
+  m_Size: {x: 0.6649826, y: 0.42789787}
+  m_Direction: 1

@@ -10,6 +10,8 @@ TagManager:
   - Axe
   - Attack
   - Exit
+  - Coin
+  - FallDeath
   layers:
   - Default
   - TransparentFX
@@ -25,9 +27,9 @@ TagManager:
   - AttackZone
   - dontclimb
   - exit
-  - 
-  - 
-  - 
+  - Interactable
+  - can't pass
+  - FallDeath
   - 
   - 
   - 
@@ -67,6 +69,9 @@ TagManager:
     locked: 0
   - name: Hazard
     uniqueID: 634571421
+    locked: 0
+  - name: Interactable
+    uniqueID: 1569087797
     locked: 0
   - name: Character
     uniqueID: 107078129

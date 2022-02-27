@@ -23,6 +23,7 @@ public class nextScene : MonoBehaviour
         {
             nextScene = 0;
         }
+        FindObjectOfType<scenePersist>().ResetTheScene();
         SceneManager.LoadScene(nextScene);
     }
 
